@@ -1,4 +1,5 @@
-# April 10th 2021, alexis forestier
+# year: 2021 
+# author: Alexis Forestier
 # 
 # a simple Langton's ant implementation using matplotlib.animation 
 
@@ -25,13 +26,17 @@ class Ant:
 	
 	def go_pbc(self, GRID_SIZE):
 		if self.dir == 'e':
-			self.coord = tuple(map(lambda i, j: (i + j) % GRID_SIZE, self.coord, (1,0))) 
+			self.coord = tuple(map(lambda i, j: (i + j) % GRID_SIZE, 
+				self.coord, (1,0))) 
 		if self.dir == 'n':
-			self.coord = tuple(map(lambda i, j: (i + j) % GRID_SIZE, self.coord, (0,1)))
+			self.coord = tuple(map(lambda i, j: (i + j) % GRID_SIZE, 
+				self.coord, (0,1)))
 		if self.dir == 'w':
-			self.coord = tuple(map(lambda i, j: (i + j) % GRID_SIZE, self.coord, (-1,0)))
+			self.coord = tuple(map(lambda i, j: (i + j) % GRID_SIZE, 
+				self.coord, (-1,0)))
 		if self.dir == 's':
-			self.coord = tuple(map(lambda i, j: (i + j) % GRID_SIZE, self.coord, (0,-1)))
+			self.coord = tuple(map(lambda i, j: (i + j) % GRID_SIZE, 
+				self.coord, (0,-1)))
 
 def run(frame, grid):
 	if grid[a.coord] == True:
@@ -55,9 +60,11 @@ if __name__ == '__main__':
 	fig, ax = plt.subplots()
 	imgrid = plt.imshow(grid, interpolation='None', vmin=False, vmax=True)
 	title = ax.text(.04,.93, "", color='k', fontsize=13,
-			bbox={'facecolor':'w', 'alpha':0.3, 'pad':4}, transform = ax.transAxes)
+			bbox={'facecolor':'w', 'alpha':0.3, 'pad':4}, 
+			transform = ax.transAxes)
 
 	a = Ant((int(GRID_SIZE/2), int(GRID_SIZE/2)))
 
-	output = anim.FuncAnimation(fig, run, fargs=(grid,), interval=1, blit=True)
+	output = anim.FuncAnimation(fig, run, fargs=(grid,), interval=1, 
+				blit=True)
 	plt.show()
